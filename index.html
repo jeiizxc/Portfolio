@@ -8,9 +8,9 @@
 <style>
 :root{--bg:#070b16;--panel:rgba(14,22,40,.88);--panel2:rgba(20,32,52,.85);--text:#f7f5f0;--muted:#b4bccb;--purple:#5b9dff;--pink:#8f7bff;--cyan:#34e0a1;--line:rgba(190,215,235,.16);--shadow:0 20px 60px rgba(0,0,0,.3)}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:85px}
+html{scroll-behavior:smooth;scroll-padding-top:85px;-webkit-text-size-adjust:100%}
 body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);line-height:1.65;background:radial-gradient(ellipse at 15% 15%,rgba(91,157,255,.10),transparent 35%),radial-gradient(ellipse at 90% 80%,rgba(140,90,255,.18),transparent 38%),linear-gradient(115deg,#0a1030 0%,#0a1030 42%,#1d0b48 58%,#1d0b48 100%);background-attachment:fixed;min-height:100vh}
-a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}.wrap{width:min(1120px,91%);margin:auto}
+a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}.wrap{width:min(1120px,91%);margin:auto}@media(min-width:1500px){.wrap{width:min(1320px,86%)}.hero p{font-size:1.14rem;max-width:660px}}
 header{position:sticky;top:0;z-index:50;background:rgba(7,11,22,.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:22px}
 .brand{font-size:1.08rem;font-weight:900;letter-spacing:.5px}.brand b{color:var(--purple)}
@@ -57,6 +57,7 @@ section{padding:78px 0}.section-title{text-align:center;margin-bottom:35px}.sect
 form{display:grid;gap:13px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;font-size:.8rem;color:#dfe4ee;margin-bottom:5px}input,textarea{width:100%;padding:12px 13px;color:var(--text);background:rgba(5,9,24,.65);border:1px solid var(--line);border-radius:10px;outline:none}input:focus,textarea:focus{border-color:var(--purple)}textarea{min-height:120px;resize:vertical}.form-note{font-size:.75rem;color:var(--muted)}.form-note.ok{color:#7ff0b4}.form-note.err{color:#ffb4b4}
 footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem;text-align:center}
 .lightbox{position:fixed;inset:0;z-index:100;display:none;place-items:center;align-content:center;gap:12px;padding:24px;background:rgba(4,6,16,.92);cursor:zoom-out}.lightbox.open{display:grid}.lightbox img{max-width:min(980px,100%);max-height:84vh;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow)}.lightbox p{color:var(--muted);font-size:.9rem;text-align:center}.lightbox-close{position:absolute;top:16px;right:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:#fff;font-size:1.2rem;cursor:pointer}
+.lb-dl{position:absolute;top:16px;right:70px;height:40px;padding:0 16px;z-index:2}
 .detail-btn{padding:8px 15px;font-size:.84rem}
 .modal{position:fixed;inset:0;z-index:90;display:none;justify-content:center;align-items:flex-start;padding:24px 14px;background:rgba(4,6,16,.88);overflow-y:auto}.modal.open{display:flex}
 .modal-box{position:relative;width:min(720px,100%);margin:auto;background:#0b1428;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:26px}
@@ -64,9 +65,11 @@ footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 .modal-box h3{font-size:1.55rem;margin:6px 0 14px;padding-right:34px}.modal-box h4{font-size:.78rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--cyan);margin:20px 0 8px}.modal-box p,.modal-box li{color:var(--muted);font-size:.92rem}.modal-box ul{padding-left:20px}.modal-box li{margin:4px 0}
 .modal-gallery{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:14px 0;padding-bottom:6px}.modal-gallery:empty{display:none}.modal-gallery img{flex:0 0 auto;height:230px;max-width:100%;width:auto;object-fit:cover;border-radius:12px;border:1px solid var(--line);scroll-snap-align:start;cursor:zoom-in}
 .modal-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}body.noscroll{overflow:hidden}
+.pic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}.pic-grid img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:#0e1730;cursor:zoom-in}.pic-empty{color:var(--muted);font-size:.9rem;padding:14px;border:1px dashed var(--line);border-radius:12px}@media(max-width:600px){.pic-grid{grid-template-columns:1fr}}
 .hidden{display:none!important}.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}.reveal.visible{opacity:1;transform:translateY(0)}
-@media(max-width:850px){.hero{grid-template-columns:1fr;gap:18px;padding-top:58px}.art{min-height:400px}.code-window{width:min(480px,94%)}.about-grid,.contact-grid,.timeline-grid,.skills-grid{grid-template-columns:1fr}.project-grid,.certificate-grid{grid-template-columns:repeat(2,1fr)}.tech-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:600px){.navlinks{display:none;position:absolute;z-index:60;left:0;right:0;top:72px;padding:18px 5%;background:#080e1c;border-bottom:1px solid var(--line);flex-direction:column;gap:16px}.navlinks.open{display:flex}.navlinks a{display:block;padding:8px 0;font-size:1rem}.menu{display:block;cursor:pointer}.hero{min-height:auto;padding:55px 0 65px}h1{letter-spacing:-1.5px}.art{min-height:340px}.avatar{width:118px;height:118px;left:0}.avatar .ph{font-size:1.6rem}.code-window{padding:13px;margin-top:70px}.code{font-size:.75rem}.floating{right:0;bottom:4px}.stats{gap:7px}.tl-logo{width:44px;height:44px}.stat{padding:10px}.project-grid{grid-template-columns:1fr}.certificate-grid{grid-template-columns:repeat(2,1fr);gap:12px}.cert-icon{height:130px}.project-visual{height:170px}.tech-grid{grid-template-columns:repeat(3,1fr)}section{padding:61px 0}.panel{padding:20px}.form-row{grid-template-columns:1fr}.section-title{margin-bottom:27px}}
+@media(max-width:850px){.hero{grid-template-columns:1fr;gap:18px;padding-top:58px}.art{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0}.avatar{position:relative;top:auto;left:auto;margin-bottom:-46px}.code-window{width:min(480px,94%);margin-top:0;padding-top:64px}.about-grid,.contact-grid,.timeline-grid,.skills-grid{grid-template-columns:1fr}.project-grid,.certificate-grid{grid-template-columns:repeat(2,1fr)}.tech-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:700px){.navlinks{display:none;position:absolute;z-index:60;left:0;right:0;top:72px;padding:18px 5%;background:#080e1c;border-bottom:1px solid var(--line);flex-direction:column;gap:16px}.navlinks.open{display:flex}.navlinks a{display:block;padding:8px 0;font-size:1rem}.menu{display:block;cursor:pointer}}@media(max-width:600px){.hero{min-height:auto;padding:55px 0 65px}h1{letter-spacing:-1.5px}.art{min-height:0}.avatar{width:118px;height:118px;margin-bottom:-36px}.avatar .ph{font-size:1.6rem}.code-window{padding:50px 13px 13px;margin-top:0}input,textarea{font-size:16px}.code{font-size:.75rem}.floating{right:0;bottom:4px}.stats{gap:7px}.tl-logo{width:44px;height:44px}.stat{padding:10px}.project-grid{grid-template-columns:1fr}.certificate-grid{grid-template-columns:repeat(2,1fr);gap:12px}.cert-icon{height:130px}.project-visual{height:170px}.tech-grid{grid-template-columns:repeat(3,1fr)}section{padding:61px 0}.panel{padding:20px}.form-row{grid-template-columns:1fr}.section-title{margin-bottom:27px}}
+@media(hover:none){.project-card:hover,.certificate:hover,.tech-item:hover,.btn:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
@@ -85,7 +88,7 @@ footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-s
     <h1>Aspiring<br><span class="gradient">Web Developer</span><br><span style="font-size:.48em;letter-spacing:-.5px"> &amp; IT Student</span></h1>
     <p>Hi! I'm <strong>Peejay Cruz</strong>, an IT student passionate about building responsive websites, exploring new technologies, and turning ideas into practical digital experiences.</p>
     <div class="pills"><span class="pill">Web Development</span><span class="pill">UI Design</span><span class="pill">Problem Solving</span></div>
-    <div class="actions"><a class="btn primary" href="#showcase">Explore My Work ↗</a><a class="btn ghost" href="#contact">Let's Connect</a><a class="btn ghost resume-btn" href="resume.png" data-full="resume.png" aria-label="View resume">View Resume ↗</a></div>
+    <div class="actions"><a class="btn primary" href="#showcase">Explore My Work ↗</a><a class="btn ghost" href="#contact">Let's Connect</a><a class="btn ghost resume-btn" href="resume.png" data-full="resume.png" data-download="resume.pdf" aria-label="View resume">View Resume ↗</a></div>
   </div>
   <div class="art reveal" aria-label="Profile photo and decorative code illustration">
     <div class="art-glow"></div>
@@ -154,7 +157,7 @@ footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 <h4>Admin Web Platform</h4><ul><li>Secure admin login and dashboard overview</li><li>Review and verify incoming reports</li><li>Risk level classification (Low, Medium, High) with a priority-based report list</li><li>Update report status and monitor resolution</li><li>Photographic evidence required before a report is marked resolved</li><li>Duplicate report review, search and filter, report generation, and activity logs</li></ul>
 <h4>Types of Incidents</h4><div class="chips"><span class="chip soft">Traffic Accidents</span><span class="chip soft">Flooding</span><span class="chip soft">Public Disturbances</span><span class="chip soft">Other Urgent Incidents</span></div>
 <h4>Technologies Used</h4><div class="chips"><span class="chip tech">HTML</span><span class="chip tech">CSS</span><span class="chip tech">JavaScript</span><span class="chip tech">PHP / MySQL</span><span class="chip tech">GPS &amp; Map Integration</span></div>
-<div class="modal-links"><a class="btn primary" href="https://jeiizxc.github.io/incident-reporting" target="_blank" rel="noopener">Live Demo ↗</a><a class="btn ghost" href="https://github.com/jeiizxc/incident-reporting" target="_blank" rel="noopener">GitHub ↗</a></div></template></div></div>
+<div class="modal-links"><button class="btn primary" type="button" data-gallery="p1">View Project 🖼</button></div></template></div></div>
     </article>
     <article class="project-card">
       <div class="project-visual">
@@ -162,15 +165,15 @@ footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-s
         <img src="dashboard2.jpeg" alt="Screenshot of Attendance Monitoring System" data-full="dashboard2.jpeg" loading="lazy" onerror="this.remove()">
       </div>
       <div class="project-body"><span class="tag">Desktop / System · School Project</span><h3>Attendance Monitoring System</h3><p>A sample system concept for organizing attendance records, employee information, and daily logs.</p><div class="tech"><span>System Design</span><span>Database</span><span>UI Design</span></div>
-        <div class="project-links"><button class="btn ghost detail-btn" type="button" data-details="p2">View Details →</button><template id="details-p2"><span class="tag">Desktop / System · School Project</span><h3>Attendance Monitoring System</h3><!-- PICTURES for this pop-up: put up to 3 images in images/projects/ named project2.png, project2-2.png, project2-3.png (missing ones are skipped) --><div class="modal-gallery"><img src="dashboard2.jpeg" alt="Attendance Monitoring System dashboard" data-full="dashboard2.jpeg" onerror="this.remove()"><img src="images/projects/project2.png" alt="Project 2 screenshot 1" data-full="images/projects/project2.png" onerror="this.remove()"><img src="images/projects/project2-2.png" alt="Project 2 screenshot 2" data-full="images/projects/project2-2.png" onerror="this.remove()"><img src="images/projects/project2-3.png" alt="Project 2 screenshot 3" data-full="images/projects/project2-3.png" onerror="this.remove()"></div><h4>Overview</h4><p>A sample system concept for organizing attendance records, employee information, and daily logs in one place.</p><h4>Key Features</h4><ul><li>Organize attendance records</li><li>Keep employee information</li><li>Record daily logs</li></ul><h4>Technologies Used</h4><div class="chips"><span class="chip tech">System Design</span><span class="chip tech">Database</span><span class="chip tech">UI Design</span></div><div class="modal-links"><a class="btn ghost" href="https://github.com/jeiizxc/attendance-system" target="_blank" rel="noopener">GitHub ↗</a><a class="btn ghost" href="files/attendance-system.pdf" download>Documentation ↓</a></div></template></div></div>
+        <div class="project-links"><button class="btn ghost detail-btn" type="button" data-details="p2">View Details →</button><template id="details-p2"><span class="tag">Desktop / System · School Project</span><h3>Attendance Monitoring System</h3><!-- PICTURES for this pop-up: put up to 3 images in images/projects/ named project2.png, project2-2.png, project2-3.png (missing ones are skipped) --><div class="modal-gallery"><img src="dashboard2.jpeg" alt="Attendance Monitoring System dashboard" data-full="dashboard2.jpeg" onerror="this.remove()"><img src="images/projects/project2.png" alt="Project 2 screenshot 1" data-full="images/projects/project2.png" onerror="this.remove()"><img src="images/projects/project2-2.png" alt="Project 2 screenshot 2" data-full="images/projects/project2-2.png" onerror="this.remove()"><img src="images/projects/project2-3.png" alt="Project 2 screenshot 3" data-full="images/projects/project2-3.png" onerror="this.remove()"></div><h4>Overview</h4><p>A sample system concept for organizing attendance records, employee information, and daily logs in one place.</p><h4>Key Features</h4><ul><li>Organize attendance records</li><li>Keep employee information</li><li>Record daily logs</li></ul><h4>Technologies Used</h4><div class="chips"><span class="chip tech">System Design</span><span class="chip tech">Database</span><span class="chip tech">UI Design</span></div><div class="modal-links"><button class="btn primary" type="button" data-gallery="p2">View Project 🖼</button></div></template></div></div>
     </article>
     <article class="project-card">
       <div class="project-visual">
         <div class="mini-browser"><div class="mini-dots"><i></i><i></i><i></i></div><div class="mini-line"></div><div class="mini-line short"></div><div class="mini-blocks"><i></i><i></i></div></div>
-        <img src="images/projects/project3.png" alt="Screenshot of Personal Portfolio" data-full="images/projects/project3.png" loading="lazy" onerror="this.remove()">
+        <img src="dashboard3.jpg" alt="Screenshot of Personal Portfolio" data-full="dashboard3.jpg" loading="lazy" onerror="this.remove()">
       </div>
       <div class="project-body"><span class="tag">Personal Website</span><h3>Personal Portfolio</h3><p>A responsive website introducing my background, skills, projects, certificates, and contact information.</p><div class="tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
-        <div class="project-links"><button class="btn ghost detail-btn" type="button" data-details="p3">View Details →</button><template id="details-p3"><span class="tag">Personal Website</span><h3>Personal Portfolio</h3><!-- PICTURES for this pop-up: put up to 3 images in images/projects/ named project3.png, project3-2.png, project3-3.png (missing ones are skipped) --><div class="modal-gallery"><img src="images/projects/project3.png" alt="Project 3 screenshot 1" data-full="images/projects/project3.png" onerror="this.remove()"><img src="images/projects/project3-2.png" alt="Project 3 screenshot 2" data-full="images/projects/project3-2.png" onerror="this.remove()"><img src="images/projects/project3-3.png" alt="Project 3 screenshot 3" data-full="images/projects/project3-3.png" onerror="this.remove()"></div><h4>Overview</h4><p>This website: a responsive personal portfolio that introduces my background, skills, projects, certificates, and contact information.</p><h4>Key Features</h4><ul><li>Responsive layout for phone, tablet, and desktop</li><li>Resume viewer and PDF download</li><li>Projects, Certificates, and Tech Stack tabs</li><li>Contact form that sends messages to my email</li></ul><h4>Technologies Used</h4><div class="chips"><span class="chip tech">HTML5</span><span class="chip tech">CSS3</span><span class="chip tech">JavaScript</span></div><div class="modal-links"><a class="btn ghost" href="https://github.com/jeiizxc/portfolio" target="_blank" rel="noopener">GitHub ↗</a></div></template></div></div>
+        <div class="project-links"><a class="btn ghost detail-btn" href="#home">View Project ↑</a><template id="details-p3"><span class="tag">Personal Website</span><h3>Personal Portfolio</h3><!-- PICTURES for this pop-up: put up to 3 images in images/projects/ named project3.png, project3-2.png, project3-3.png (missing ones are skipped) --><div class="modal-gallery"><img src="images/projects/project3.png" alt="Project 3 screenshot 1" data-full="images/projects/project3.png" onerror="this.remove()"><img src="images/projects/project3-2.png" alt="Project 3 screenshot 2" data-full="images/projects/project3-2.png" onerror="this.remove()"><img src="images/projects/project3-3.png" alt="Project 3 screenshot 3" data-full="images/projects/project3-3.png" onerror="this.remove()"></div><h4>Overview</h4><p>This website: a responsive personal portfolio that introduces my background, skills, projects, certificates, and contact information.</p><h4>Key Features</h4><ul><li>Responsive layout for phone, tablet, and desktop</li><li>Resume viewer and PDF download</li><li>Projects, Certificates, and Tech Stack tabs</li><li>Contact form that sends messages to my email</li></ul><h4>Technologies Used</h4><div class="chips"><span class="chip tech">HTML5</span><span class="chip tech">CSS3</span><span class="chip tech">JavaScript</span></div><div class="modal-links"><a class="btn ghost" href="https://github.com/jeiizxc/portfolio" target="_blank" rel="noopener">GitHub ↗</a></div></template></div></div>
     </article>
   </div>
 
@@ -202,9 +205,9 @@ footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       <div class="contact-method"><span class="c-icon c-fb"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></span><div><b>Facebook</b><a href="https://www.facebook.com/share/1Fde37eQvd/" target="_blank" rel="noopener">facebook.com/share/1Fde37eQvd ↗</a></div></div>
       <div class="contact-method"><span class="c-icon c-ig"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span><div><b>Instagram</b><a href="https://www.instagram.com/jeizxc_7?srtk=MWViNXR4am9sMDlvcA==" target="_blank" rel="noopener">instagram.com/jeizxc_7 ↗</a></div></div>
       <div class="contact-method"><span class="c-icon c-tt"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></span><div><b>TikTok</b><a href="https://www.tiktok.com/@jeizxcc" target="_blank" rel="noopener">tiktok.com/@jeizxcc ↗</a></div></div>
-      <div class="contact-method"><span class="c-icon c-cv"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><div><b>Resume</b><a id="dlResume" href="resume.pdf" download="resume.pdf">Download PDF ↓</a></div></div>
+      
     </div>
-    <div class="panel reveal"><form id="contactForm"><div class="form-row"><div><label for="visitorName">Your name</label><input id="visitorName" name="visitorName" placeholder="Enter your name" required></div><div><label for="visitorEmail">Email address</label><input id="visitorEmail" name="visitorEmail" type="email" placeholder="you@example.com" required></div></div><div><label for="subject">Subject</label><input id="subject" name="subject" placeholder="What would you like to talk about?" required></div><div><label for="message">Message</label><textarea id="message" name="message" placeholder="Write your message here..." required></textarea></div><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"><button class="btn primary" type="submit">Send Message ↗</button><p class="form-note" id="formNote" role="status" aria-live="polite">Your message will be sent straight to my email.</p></form></div>
+    <div class="panel reveal"><form id="contactForm"><div class="form-row"><div><label for="visitorName">Your name</label><input id="visitorName" name="visitorName" placeholder="Enter your name" required></div><div><label for="visitorEmail">Email address</label><input id="visitorEmail" name="visitorEmail" type="email" placeholder="you@example.com" required></div></div><div><label for="subject">Subject</label><input id="subject" name="subject" placeholder="What would you like to talk about?" required></div><div><label for="message">Message</label><textarea id="message" name="message" placeholder="Write your message here..." required></textarea></div><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"><button class="btn primary" type="submit">Send Message ↗</button><p class="form-note" id="formNote" role="status" aria-live="polite">Pressing Send Message opens Gmail with your message ready to send.</p></form></div>
   </div>
 </div></section>
 </main>
@@ -216,6 +219,7 @@ footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">✕</button>
+  <a class="btn primary lb-dl hidden" id="lightboxDl" href="resume.pdf" download="Peejay-Cruz-Resume.pdf">Download Resume ↓</a>
   <img id="lightboxImg" alt="">
   <p id="lightboxMsg"></p>
 </div>
@@ -254,15 +258,18 @@ document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>
 
 /* Image preview (projects + certificates) */
 const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lightboxImg'),lbMsg=document.getElementById('lightboxMsg');
-function openLightbox(src,alt){
+const lbDl=document.getElementById('lightboxDl');
+lbDl.addEventListener('click',e=>e.stopPropagation());
+function openLightbox(src,alt,dl){
+ lbDl.classList.toggle('hidden',!dl);if(dl)lbDl.setAttribute('href',dl);
  lbMsg.textContent='';lbImg.style.display='';
  lbImg.onerror=()=>{lbImg.style.display='none';lbMsg.textContent='Image not found: '+src+' — add this file to your folder.';};
  lbImg.alt=alt||'';lbImg.src=src;lb.classList.add('open');
 }
-function closeLightbox(){lb.classList.remove('open');lbImg.removeAttribute('src');}
+function closeLightbox(){lb.classList.remove('open');lbDl.classList.add('hidden');lbImg.removeAttribute('src');}
 document.addEventListener('click',e=>{
  const t=e.target.closest('[data-full]');
- if(t&&!lb.contains(t)){e.preventDefault();openLightbox(t.dataset.full,t.getAttribute('alt')||t.textContent);}
+ if(t&&!lb.contains(t)){e.preventDefault();openLightbox(t.dataset.full,t.getAttribute('alt')||t.textContent,t.dataset.download);}
 });
 lb.addEventListener('click',closeLightbox);
 /* Project details pop-up */
@@ -272,58 +279,55 @@ function closeDetails(){pm.classList.remove('open');document.body.classList.remo
 document.addEventListener('click',e=>{const b=e.target.closest('[data-details]');if(b)openDetails(b.dataset.details);});
 pm.addEventListener('click',e=>{if(e.target===pm)closeDetails();});
 document.getElementById('modalClose').addEventListener('click',closeDetails);
+/* Project pictures: "View Project" inside the pop-up shows only the pictures of that project.
+   Project 1 uses the exact file names listed below (same folder as index.html), in this order.
+   Project 2 uses the exact file names listed below as well. Missing files are skipped. */
+const GALLERY={
+ p1:{title:'Digital Incident Reporting and Resolution Management System',files:['p1ui1.jpeg','dashboard1.jpeg','p1ui2.jpeg','p1ui3.jpeg','p1ui4.jpeg','p1ui5.jpeg','p1ui6.jpeg']},
+ p2:{title:'Attendance Monitoring System',files:['dashboard2.jpeg','p2ui1.jpeg','p2ui2.jpeg','p2ui3.jpeg','p2ui4.jpeg','p2ui5.jpeg']}
+};
+const EXTS=['jpg','jpeg','png','webp','JPG','JPEG','PNG'];
+function galleryItems(g){
+ if(g.files)return g.files.map(f=>{const m=f.match(/^(.*)\.(\w+)$/);return m?[f].concat(EXTS.filter(x=>x!==m[2]).map(x=>m[1]+'.'+x)):[f];});
+ const items=[];for(let n=1;n<=g.count;n++)items.push(EXTS.map(x=>g.base+n+'.'+x));return items;
+}
+function openGallery(id){
+ const g=GALLERY[id];if(!g)return;
+ const items=galleryItems(g);
+ pmBody.innerHTML='<span class="tag">Project pictures</span><h3>'+g.title+'</h3><div class="pic-grid" id="picGrid"></div><p class="pic-empty hidden" id="picMiss"></p><p class="pic-empty hidden" id="picEmpty">No pictures found yet. Check that the picture files are in the same folder as index.html and that the names match.</p><div class="modal-links"><button class="btn ghost" type="button" data-back="'+id+'">\u2190 Back to details</button></div>';
+ const grid=document.getElementById('picGrid'),empty=document.getElementById('picEmpty'),miss=document.getElementById('picMiss');let settled=0;const missing=[];
+ const check=()=>{settled++;if(settled===items.length){if(!grid.children.length)empty.classList.remove('hidden');if(missing.length){miss.textContent='Not found: '+missing.join(', ')+' (check the file name and that it is in the same folder as index.html)';miss.classList.remove('hidden');}}};
+ items.forEach((cands,i)=>{
+  const img=new Image();let k=0;img.alt=g.title+' picture '+(i+1);
+  img.onload=()=>{img.dataset.full=img.currentSrc||img.src;check();};
+  img.onerror=()=>{k++;if(k<cands.length){img.src=cands[k];}else{img.remove();missing.push(cands[0]);check();}};
+  img.src=cands[0];
+  grid.appendChild(img);
+ });
+ pm.scrollTop=0;
+}
+document.addEventListener('click',e=>{
+ const g=e.target.closest('[data-gallery]');if(g){openGallery(g.dataset.gallery);return;}
+ const b=e.target.closest('[data-back]');if(b)openDetails(b.dataset.back);
+});
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(lb.classList.contains('open'))closeLightbox();else if(pm.classList.contains('open'))closeDetails();});
 
-/* Force-download the resume PDF; if the browser/preview blocks it, open the PDF in a new tab instead */
-document.getElementById('dlResume').addEventListener('click',async e=>{
- e.preventDefault();
- const url=e.currentTarget.getAttribute('href');
- try{
-  const res=await fetch(url);
-  if(!res.ok)throw new Error('missing');
-  const blob=await res.blob();
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);a.download='Peejay-Cruz-Resume.pdf';
-  document.body.appendChild(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
- }catch(err){
-  window.open(url,'_blank','noopener');
- }
-});
-
-/* ===== CONTACT FORM: sends the message straight to your email (no email app needed) =====
-   Option A (default): FormSubmit. One-time activation: after your site is online, send one test message,
-   then open the "Activate Form" email that arrives at the address below and click the button.
-   Option B (most reliable): paste a free Web3Forms access key below (get it at web3forms.com).
-   It takes priority over FormSubmit once filled in. */
+/* ===== CONTACT FORM: opens Gmail with the message ready to send =====
+   Phone: opens your Gmail / default mail app. Computer: opens Gmail in a new tab. */
 const CONTACT_EMAIL='peejaycruz195@gmail.com';
-const WEB3FORMS_KEY='';
-document.getElementById('contactForm').addEventListener('submit',async e=>{
+document.getElementById('contactForm').addEventListener('submit',e=>{
  e.preventDefault();
- const form=e.currentTarget,d=new FormData(form),note=document.getElementById('formNote'),btn=form.querySelector('button[type="submit"]');
+ const form=e.currentTarget,d=new FormData(form),note=document.getElementById('formNote');
  if(d.get('_honey'))return;
- const p={name:d.get('visitorName'),email:d.get('visitorEmail'),subject:d.get('subject'),message:d.get('message')};
- btn.disabled=true;note.className='form-note';note.textContent='Sending…';
- try{
-  let ok=false,msg='';
-  if(WEB3FORMS_KEY){
-   const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-    body:JSON.stringify({access_key:WEB3FORMS_KEY,name:p.name,email:p.email,subject:'Portfolio message: '+p.subject,message:p.message,botcheck:''})});
-   const data=await res.json();ok=res.ok&&data.success===true;msg=data.message||'';
-  }else{
-   const res=await fetch('https://formsubmit.co/ajax/'+CONTACT_EMAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-    body:JSON.stringify({name:p.name,email:p.email,subject:p.subject,message:p.message,_subject:'Portfolio message: '+p.subject,_replyto:p.email,_template:'table',_captcha:'false'})});
-   const data=await res.json();ok=res.ok&&(data.success===true||data.success==='true');msg=data.message||'';
-  }
-  if(!ok)throw new Error(msg||'failed');
-  form.reset();note.className='form-note ok';note.textContent='Thank you! Your message was sent.';
- }catch(err){
-  const link='mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent(p.subject)+'&body='+encodeURIComponent('From: '+p.name+' ('+p.email+')\n\n'+p.message);
-  note.className='form-note err';note.textContent='Could not send your message right now. ';
-  const a=document.createElement('a');a.href=link;a.textContent='Email me instead ↗';a.style.color='var(--cyan)';a.style.fontWeight='700';
-  note.append(a);
-  console.warn('Contact form error:',err.message);
- }finally{btn.disabled=false;}
+ const name=d.get('visitorName'),email=d.get('visitorEmail'),subject=d.get('subject'),message=d.get('message');
+ const body='Hi Peejay,\n\n'+message+'\n\n- '+name+'\n'+email;
+ const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+ const mailto='mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+ const gmail='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(CONTACT_EMAIL)+'&su='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+ note.className='form-note ok';note.textContent='Gmail is opening with your message ready. Press Send there to deliver it. ';
+ const a=document.createElement('a');a.href=mobile?mailto:gmail;if(!mobile){a.target='_blank';a.rel='noopener';}
+ a.textContent='Did not open? Tap here ↗';a.style.color='var(--cyan)';a.style.fontWeight='700';note.append(a);
+ if(mobile)window.location.href=mailto;else window.open(gmail,'_blank','noopener');
 });
 if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));}
 </script>
